@@ -16,7 +16,7 @@ public class HelloController {
     }
 
     @GetMapping("/reverse")
-    public String reverse(@RequestParam("input") String input) {
+    public String reverse(@RequestParam("text") String input) {
         System.out.println("Received request for /reverse with input: " + input);
         StringBuilder reversed = new StringBuilder(input);
         String response = reversed.reverse().toString();
@@ -32,4 +32,24 @@ public class HelloController {
         System.out.println("Sending response: " + isPalindrome);
         return isPalindrome;
     }
+
+   //Endpoint to remove vowels from a string.
+    @GetMapping("/disemvowel")
+    public String removeVowel(@RequestParam("text") String text){
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<text.length();i++) {
+
+            if(text.charAt(i)=='a'||text.charAt(i)=='e'||text.charAt(i)=='i'||text.charAt(i)=='o'||
+                    text.charAt(i)=='u'||text.charAt(i)=='A'||text.charAt(i)=='E'||text.charAt(i)=='I'||text.charAt(i)=='O'
+                    ||text.charAt(i)=='U') {
+                continue;
+            }
+            else {
+                sb.append(text.charAt(i));
+            }
+
+        }
+        return sb.toString();
+    }
+
 }
